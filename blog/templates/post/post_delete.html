@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Postni o'chirish</h2>
+  <p>Haqiqiyroq o'chirmoqchimisiz?</p>
+  <form method="POST" class="post-form">
+    {% csrf_token %}
+    <button type="submit">Ha</button>
+    <a href="{% url 'post_detail' pk=post.pk %}"><button type="button">Yo'q</button></a>
+  </form>
+{% endblock %}

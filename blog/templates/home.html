@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="d-flex" role="search" method="get" action="{% url 'post_list' %}">
+        <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <br>
+    <div>
+        <a href="{% url 'post_create' %}" class="btn btn-primary">Create Post</a>
+    </div>
+   <div>
+        {% if user.is_authenticated %}
+            {{ user.username }} | <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+        {% endif %}
+    </div> 
+    <ul>
+        {% for post in posts %}
+            <li><h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2></li>
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}
+
